@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#welcome-el{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 5%;
+}
