@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO LIST</title>
+</head>
+<body>
+    <h1>TODO LIST</h1>
+    <input type="text" placeholder="enter the task u want to add">
+    <button>Add task</button>
+    <ul>
+        <li>eat <button class="delete">Delete</button></li>
+        <li>sleep <button class="delete">Delete</button></li>
+        <li>repeat <button class="delete">Delete</button></li>
+    </ul>
+
+    <script>
+        let inp = document.querySelector("input");
+        let btn = document.querySelector("button");
+        let ul = document.querySelector("ul");
+
+        btn.addEventListener("click", function(){
+            if(inp.value.trim() === "") return; // Prevent adding empty tasks
+            
+            let item = document.createElement("li");
+            item.innerText = inp.value;
+
+            // Delete button
+            let dltbtn = document.createElement("button");
+            dltbtn.innerText = "Delete";
+            dltbtn.classList.add("delete");
+            item.appendChild(dltbtn);
+            ul.appendChild(item);
+
+            inp.value = "";
+
+            // Add event listener for the newly created delete button
+            dltbtn.addEventListener("click", function(){
+                item.remove();
+                console.log("Deleted successfully");
+            });
+        });
+
+        // Fix: Select all delete buttons correctly
+        let dltbtns = document.querySelectorAll(".delete");
+        dltbtns.forEach(dltbtn => { 
+            dltbtn.addEventListener("click", function(){
+                this.parentElement.remove();
+                console.log("Deleted successfully");
+            });
+        });
+    </script>
+</body>
+</html>

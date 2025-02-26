@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial Calculator</title>
+</head>
+<body>
+
+    <script>
+        // Create an input field
+        let inp = document.createElement('input');
+        inp.type = "number";
+        inp.placeholder = "Enter a number";  // Placeholder instead of innerText
+        inp.style.marginRight = "10px"; // Add some styling
+
+        // Create a button
+        let btn = document.createElement('button');
+        btn.innerText = "Calculate Factorial";
+
+        // Create a result display area
+        let result = document.createElement('p');
+
+        // Append elements to the body
+        document.body.append(inp, btn, result);
+
+        // Factorial function
+        function factorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            return n * factorial(n - 1);
+        }
+
+        // Button click event
+        btn.addEventListener("click", function () {
+            let num = parseInt(inp.value);
+            if (isNaN(num) || num < 0) {
+                result.innerText = "Please enter a valid positive number!";
+            } else {
+                result.innerText = `Factorial of ${num} is: ${factorial(num)}`;
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            background-color: yellow;
+            height: 200px;
+            width: 300px;
+        }
+        ul{
+            background-color: pink;
+        }
+        li{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+        </ul>
+    </div>
+    <script>
+        let div = document.querySelector('div');
+        let ul = div.querySelector('ul');
+        let li = div.querySelectorAll('li');
+
+        div.addEventListener('click',function(){
+            console.log('div clicked');
+        })
+
+        ul.addEventListener('click',function(e){
+            e.stopPropagation(); // it will stop bubbling
+            console.log('ul clicked');
+        })
+
+        for(li in lis){
+            li.addEventListener('click',function(e){
+                e.stopPropagation(); // it will stop bubbling
+                console.log('li clicked');
+        })
+    }
+
+    // event delegation ek type of phenpmena jisme hum apne bubling wale properties ko use krenge !
+    //  
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+    <style>
+        .container {
+            text-align: center;
+            height: 300px;
+            width: 250px;
+            border: 5px solid black;
+            /* box-shadow: 20px -16px teal; */
+            margin-left: 30%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dictionary</h1>
+        <input type="text" id="word" placeholder="Enter text to search">
+        <br><br>
+        <button id="searchBtn">Search</button>
+        <p id="result"></p>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+        let inp = document.querySelector("#word");
+        let btn = document.querySelector("#searchBtn");
+        let result = document.querySelector("#result");
+
+        btn.addEventListener("click", async () => {
+            let word = inp.value.trim(); // Get input value and trim spaces
+            if (word === "") {
+                result.innerText = "Please enter a word!";
+                return;
+            }
+
+            let url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+            
+            try {
+                let res = await axios.get(url);
+                let meaning = res.data[0].meanings[0].definitions[0].definition;
+                // result.innerText = `Meaning: ${meaning}`;
+                result.innerText = meaning;
+            } catch (error) {
+                result.innerText = "Word not found!";
+            }
+        });
+    </script>
+</body>
+</html>
